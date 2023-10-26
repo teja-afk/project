@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="script.js"></script>
+
+    <title>Mini Project</title>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul id="navList">
+                <li>
+                    <p id="navLogo">Green Tech Recycle</p>
+                </li>
+                <li>
+                    <div id="navItems">
+                        <a href="#">Home</a>
+                        <a href="#">E-Waste Blogs</a>
+                        <a href="#">About</a>
+                        <a href="login.html">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- learn more popup -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2>Harmful Components of E-Waste</h2>
+                <p>
+                    Electronic waste, or e-waste, contains various harmful components that can have detrimental effects on the environment and human health if not disposed of properly. Here are some of the key components and their effects:
+                </p>
+                <ul>
+                    <li><strong>Lead:</strong> Found in CRT monitors and some circuit boards, lead exposure can result in neurological and developmental issues, especially in children.</li>
+                    <li><strong>Mercury:</strong> Commonly found in fluorescent lamps and batteries, mercury can harm the nervous system, kidneys, and the environment when it enters water bodies.</li>
+                    <li><strong>Cadmium:</strong> Found in rechargeable batteries, cadmium is a carcinogen and can cause lung and prostate cancer.</li>
+                    <li><strong>Hexavalent Chromium:</strong> Present in some electronics, it's a carcinogen and can also harm the respiratory system and skin.</li>
+                    <li><strong>Polybrominated Flame Retardants:</strong> Used in plastics and circuit boards, these can disrupt hormones and potentially lead to developmental issues.</li>
+                </ul>
+                <p>
+                    Proper e-waste disposal and recycling are essential to prevent these toxic components from leaching into the environment and posing health risks. Recycling e-waste helps recover valuable materials and reduces the burden on landfills.
+                </p>
+            </div>
+        </div>
+
+        <!-- User Input Give Credits -->
+        <section id="user-credits">
+            <h1>Enter Your Device</h1>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <p>Input the model of your old device to earn credits based on precious metals.</p>
+                <input type="text" id="device-model" placeholder="Enter your device model">
+                <button type="submit" id="earn-credits-button">Earn Credits</button>
+            </form> 
+            <h2>Your Credits: <span id="credits">0</span></h2>
+            <button onclick="openPopup()">Learn More</button>
+        </section>
+        
+        <!-- User Input Location & Map embed -->
+        <section id="nearest-facilities">
+            <h2>Nearest E-Waste Facilities</h2>
+            <div class="map">
+                <iframe src="https://my.atlist.com/map/fb2621a5-0465-44a4-a41a-547a17bfc054?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="400px" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footerBox">
+            <p>
+                Copyright &copy; Green Tech Resource Mini Project 2023. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!--  Credits Logic  -->
+    <script>
+        // Predefined device models and associated credits
+        const deviceCredits = {
+            "laptop": 50,
+            "smartphone": 30,
+            "tablet": 20,
+            "desktop": 40,
+            "printer": 25,
+            "gaming console": 35,
+            "camera": 15,
+            "monitor": 30,
+            "router": 20,
+            "external hard drive": 25,
+            // Add more device models and credits as needed
+        };
+    
+        document.getElementById("earn-credits-button").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent form submission
+    
+            const deviceModel = document.getElementById("device-model").value.toLowerCase(); // Convert to lowercase for case-insensitivity
+            const creditsEarned = deviceCredits[deviceModel];
+    
+            const creditsEarnedDisplay = document.getElementById("credits");
+    
+            if (creditsEarned !== undefined) {
+                creditsEarnedDisplay.textContent = `You've earned ${creditsEarned} credits for recycling your ${deviceModel}!`;
+            } else {
+                creditsEarnedDisplay.textContent = "Invalid device model or no credits earned.";
+            }
+        });
+    </script>    
+
+</body>
+
+</html>
